@@ -1,0 +1,46 @@
+micronaut:
+  application:
+    name: smartOven
+  executors:
+    scheduled:
+      core-pool-size: 30
+      parralelism: 10
+      n-threads: 8
+  router:
+    versioning:
+      enabled: true
+      parameter:
+        enabled: true
+        names: 'v,api-version'
+      header:
+        enabled: true
+        names:
+          - 'X-API-VERSION'
+          - 'Accept-Version'
+
+endpoints:
+  beans:
+    enabled: true
+    sensitive: false
+  loggers:
+    enabled: true
+    sensitive: false
+  routes:
+    enabled: true
+    sensitive: false
+
+kafka:
+  bootstrap:
+    servers: localhost:9092
+  topic:
+    notifications: notifications
+    news: news
+    filtered-news: filtered.news
+  producers:
+    default:
+      retries: 5
+  consumers:
+    default:
+      session:
+        timeout:
+          ms: 30000

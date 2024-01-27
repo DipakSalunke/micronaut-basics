@@ -1,0 +1,43 @@
+plugins {
+    id("io.micronaut.library") version "1.5.0"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
+}
+
+version = "0.1"
+group = "mn.text.processor"
+
+repositories {
+    mavenCentral()
+}
+
+micronaut {
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("mn.text.processor.*")
+    }
+}
+
+dependencies {
+    implementation("io.micronaut:micronaut-runtime")
+    runtimeOnly("ch.qos.logback:logback-classic")
+    implementation("io.micronaut:micronaut-validation")
+    compileOnly("com.google.cloud.functions:functions-framework-api")
+    implementation("io.micronaut.gcp:micronaut-gcp-function")
+    testImplementation("com.google.cloud.functions:functions-framework-api")
+    testImplementation("io.micronaut:micronaut-http-client")
+
+    implementation("io.micronaut.gcp:micronaut-gcp-function-http")
+}
+
+
+java {
+    sourceCompatibility = JavaVersion.toVersion("1.8")
+    targetCompatibility = JavaVersion.toVersion("1.8")
+}
+
+
+
+tasks.named("assemble") {
+    dependsOn(":shadowJar")
+}

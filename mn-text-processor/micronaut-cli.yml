@@ -1,0 +1,6 @@
+applicationType: function
+defaultPackage: mn.text.processor
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [app-name, google-cloud-function, gradle, java, junit, logback, readme, shade, yaml]

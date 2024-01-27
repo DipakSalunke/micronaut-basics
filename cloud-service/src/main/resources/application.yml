@@ -1,0 +1,14 @@
+micronaut:
+  application:
+    name: smartOven
+  executors:
+    scheduled:
+      core-pool-size: 30
+      parralelism: 10
+      n-threads: 8
+  server:
+    port: 8020
+
+kafka:
+  bootstrap:
+    servers: localhost:9092
